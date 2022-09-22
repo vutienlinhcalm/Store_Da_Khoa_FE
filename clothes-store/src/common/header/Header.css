@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  font-size: large;
+}
+
+.logo {
+  width: 30%;
+  text-align: center;
+}
+
+.category {
+  width: 70%;
+  text-align: center;
+}
+
+.category .link {
+  margin: 0 20px;
+}
