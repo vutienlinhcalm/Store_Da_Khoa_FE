@@ -1,19 +1,15 @@
-.header {
-  display: flex;
-  justify-content: space-around;
-  font-size: large;
+.header{
+  padding: 10px;
 }
 
-.logo {
-  width: 30%;
-  text-align: center;
-}
 
-.category {
-  width: 70%;
-  text-align: center;
-}
-
-.category .link {
+.header_category_link {
   margin: 0 20px;
+  font-size: large;
+  color: black;
+  text-decoration: none;
+}
+
+.header_others{
+
 }
