@@ -1,5 +1,6 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
+import { Container } from 'react-bootstrap'
 import BannerBackground from '../../assets/images/banner-background-0.svg'
 
 const HomePage = () => {
@@ -8,7 +9,7 @@ const HomePage = () => {
       <h1>HomePage</h1>
 
       {/* Banner */}
-      <div className="container">
+      <Container>
 
         <Carousel variant="dark">
           <Carousel.Item>
@@ -40,44 +41,22 @@ const HomePage = () => {
           </Carousel.Item>
         </Carousel>
 
-        {/* <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img className="d-block w-100" src={BannerBackground} alt="Third slide" />
-            </div>
-            <div class="carousel-item">
-              <img className="d-block w-100" src={BannerBackground} alt="Third slide" />
-            </div>
-            <div class="carousel-item">
-              <img className="d-block w-100" src={BannerBackground} alt="Third slide" />
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div> */}
-
-      </div>
+      </Container>
 
       {/* News */}
-      <div className="container">
+      <Container>
 
-      </div>
+      </Container>
 
       {/* Trending */}
-      <div className="container">
+      <Container>
 
-      </div>
+      </Container>
 
       {/* Rating */}
-      <div className="container">
+      <Container>
 
-      </div>
+      </Container>
 
     </div>
   )
