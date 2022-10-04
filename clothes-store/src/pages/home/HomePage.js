@@ -1,6 +1,6 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
-import BannerBackground from '../../assets/images/Moon.bf27dc577d1acccaba48430d353dbbe0.svg'
+import BannerBackground from '../../assets/images/banner-background-0.svg'
 
 const HomePage = () => {
   return (
