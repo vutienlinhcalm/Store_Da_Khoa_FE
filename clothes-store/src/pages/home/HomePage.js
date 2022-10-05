@@ -2,7 +2,7 @@ import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 import { Container } from 'react-bootstrap'
 import BannerBackground from '../../assets/images/banner-background-0.svg'
-
+import Ratings from './ratings/Ratings';
 const HomePage = () => {
   return (
     <div>
@@ -17,7 +17,7 @@ const HomePage = () => {
             <Carousel.Caption>
               <h5>First slide label</h5>
               <p>
-                Decription
+                Description
               </p>
             </Carousel.Caption>
           </Carousel.Item>
@@ -26,7 +26,7 @@ const HomePage = () => {
             <Carousel.Caption>
               <h5>Second slide label</h5>
               <p>
-                Decription
+                Description
               </p>
             </Carousel.Caption>
           </Carousel.Item>
@@ -35,7 +35,7 @@ const HomePage = () => {
             <Carousel.Caption>
               <h5>Third slide label</h5>
               <p>
-                Decription
+                Description
               </p>
             </Carousel.Caption>
           </Carousel.Item>
@@ -55,7 +55,7 @@ const HomePage = () => {
 
       {/* Rating */}
       <Container>
-
+        <Ratings/>
       </Container>
 
     </div>
