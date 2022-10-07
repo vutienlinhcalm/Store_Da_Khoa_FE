@@ -1,0 +1,110 @@
+:root{
+    --text-muted-color:#D1C4CF;
+    --text-product-color:#0F172A;
+    --text-detail-color:#8491A3;
+    --text-cost-color:#2FC968;
+    --tw-text-opacity:#B8C0CA;
+}
+.text-muted-color{
+    color: var(--text-cost-color);
+}
+.text-slate-500{
+    color: var(--tw-text-opacity);
+}
+.width-900{
+    width: 900px;
+}
+.width-90{
+    width: 90px;
+}
+
+/*  */
+.width-276{
+    width: 276px;
+    margin-right: 16px;
+}
+.product_items{
+    width: 1540px;
+}
+.product_item{
+    width: 276px;
+    margin-right: 16px;
+   
+}
+.product_item_header{
+    background-color: #d0d8e0;
+    border-radius: 10px;
+}
+.product_item_size{
+    left: 0.25rem;
+    right: 0.25rem;
+    bottom: 15px;
+    width: 250px;
+    height: 25px;
+    margin-left: 14px;
+}
+.btn-size{
+    width: 40px;
+    background-color: #ffff;
+    border-radius: 5px;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+.Product_item_colors{
+    margin: 1.25rem 0.625rem 0.625rem 0.625rem;
+}
+.Product_item_color{
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+    overflow: hidden;
+    cursor: pointer;
+    width: 2.75rem;
+    height: 1.5rem;
+    z-index: 10;
+}
+.Product_item_colors--img{
+    border-radius: 9999px;
+    overflow: hidden;
+    z-index: 0;
+    bottom: 0.125rem;
+    left: 0.125rem;
+    right: 0.125rem;
+    top: 0.125rem;
+}
+.product_item_name{
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+}
+.product_item_textcolor{
+    color: rgb(100, 116, 139);
+    font-size: 1rem;
+    line-height: 1.25rem;
+    margin-top: 0.25rem;
+}
+.product_item_cost{
+    padding: 0.375rem 0.625rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    border-color: rgb(34,197,94);
+    border-width: 2px;
+}
+.product_item_cost_span{
+    color: rgb(34,197,95);
+}
+.product_star{
+    color: rgb(251, 191, 36);
+    padding-bottom: 1px;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+.product_item_review{
+    color: rgb(100, 116, 139);
+    font-size: 1rem;
+    line-height: 1.25rem;
+
+}
