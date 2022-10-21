@@ -1,6 +1,7 @@
 import React from 'react'
-import ProductThumnail from '../../../assets/images/green_shirt.png'
+import ProductThumnail from '../../assets/images/green_shirt.png'
 import StarIcon from '@mui/icons-material/Star';
+import './Product.css'
 
 const Product = () => {
   return (

@@ -4,6 +4,7 @@ import Footer from "./common/footer/Footer";
 import BlogPage from "./pages/blog/BlogPage";
 import CartPage from "./pages/cart/CartPage";
 import HomePage from "./pages/home/HomePage";
+import CategoryIndex from "./pages/categories/CategoryIndex";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/*" element={<HomePage />}></Route>
         <Route path="/blogs" element={<BlogPage />}></Route>
         <Route path="/cart" element={<CartPage />}></Route>
+        <Route path="/category/*" element={<CategoryIndex />}></Route>
       </Routes>
       <Outlet />
       <Footer />

@@ -31,7 +31,12 @@ const Header = () => {
             <NavLink to="/cart" className="header_category_link">
             Cart
             </NavLink>
-          </Col>
+            </Col>
+            <Col>
+              <NavLink to="/category" className="header_category_link">
+                Category
+              </NavLink>
+            </Col>
         </Row>
         </Col>
         <Col className='header_others' sm={3}>

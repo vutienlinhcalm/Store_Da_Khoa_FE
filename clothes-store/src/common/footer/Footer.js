@@ -5,11 +5,14 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import './Footer.css'
 
 const Footer = () => {
   return (
-    <Container className='footer'>
-      <Row>
+    <>
+    <hr />
+    <Container className='footer' fluid="md">
+      <Row className='footer_item'>
         <Col>
           <div className="footer_logo">
             <img src={footerLogo} alt="logo-footer" />
@@ -61,6 +64,7 @@ const Footer = () => {
         </Col>
       </Row>
     </Container>
+    </>
   )
 }
 
