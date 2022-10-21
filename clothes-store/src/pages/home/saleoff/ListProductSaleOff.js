@@ -6,7 +6,7 @@ import './SaleOff.css'
 const ListProductSaleOff = () => {
   return (
     <Container xs={3} className="list_product_saleoff">
-      <h4 className='list_product_saleoff_title'>Trending Product</h4>
+      <h4 className='list_product_saleoff_title'>SaleOff Product</h4>
       <Row>
         <Col><Product /></Col>
         <Col><Product /></Col>
