@@ -5,6 +5,7 @@ import BlogPage from "./pages/blog/BlogPage";
 import CartPage from "./pages/cart/CartPage";
 import HomePage from "./pages/home/HomePage";
 import CategoryIndex from "./pages/categories/CategoryIndex";
+import AboutPage from "./pages/about/AboutPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/*" element={<HomePage />}></Route>
+        <Route path="/about" element={<AboutPage />}></Route>
         <Route path="/blogs" element={<BlogPage />}></Route>
         <Route path="/cart" element={<CartPage />}></Route>
         <Route path="/category/*" element={<CategoryIndex />}></Route>
