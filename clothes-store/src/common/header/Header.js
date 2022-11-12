@@ -42,15 +42,22 @@ const Header = () => {
                 Category
               </NavLink>
             </Col>
+            <Col>
+             <NavLink to="/signup" className="header_category_link">
+                Đăng ký
+              </NavLink>
+              <NavLink to="/signin" className="header_category_link">
+                Đăng Nhập
+              </NavLink>
+        </Col>
           </Row>
         </Col>
         <Col className='header_others' sm={3}>
           <SearchOutlinedIcon style={{ marginLeft: 4, marginRight: 4 }} fontSize="large" />
           <PersonOutlinedIcon style={{ marginLeft: 4, marginRight: 4 }} fontSize="large" />
           <ShoppingCartOutlinedIcon style={{ marginLeft: 4, marginRight: 4 }} fontSize="large" />
-          <button>Đăng nhập</button>
-          <button>Đăng ký</button>
         </Col>
+       
       </Row>
     </Container>
   )

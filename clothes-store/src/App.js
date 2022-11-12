@@ -6,6 +6,8 @@ import CartPage from "./pages/cart/CartPage";
 import HomePage from "./pages/home/HomePage";
 import CategoryIndex from "./pages/categories/CategoryIndex";
 import AboutPage from "./pages/about/AboutPage";
+import SignUp from "./pages/signup/SignUp";
+import SignIn from "./pages/signin/SignIn";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/blogs" element={<BlogPage />}></Route>
         <Route path="/cart" element={<CartPage />}></Route>
         <Route path="/category/*" element={<CategoryIndex />}></Route>
+        <Route path="/signup" element={<SignUp/>}></Route>
+        <Route path="/signin" element={<SignIn/>}></Route>
       </Routes>
       <Outlet />
       <Footer />
