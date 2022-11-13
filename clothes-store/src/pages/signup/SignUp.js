@@ -47,7 +47,7 @@ const  SignUp = ()=>{
     type:'text',
     placeholder:'Phone',
     label:'Phone',
-    //pattern:`/^0[0-9]\d{10}$/g`,
+    pattern:`^0[0-9]{9}$`,
     errormessage:'It should start with 0 with 10 number characters',
     required:true
   },
@@ -64,7 +64,7 @@ const  SignUp = ()=>{
   {
     id:'confirmpassword',
     name:'confirmpassword',
-    type:'text',
+    type:'password',
     placeholder:'Confirm Password',
     label:'Confirm Password',
     errormessage:" Password don't match",
@@ -86,8 +86,11 @@ const  SignUp = ()=>{
             <Container className='container'>
             <Row className='container__row'>
                <Col xl={6} className='container__col' >
-                    <h1>Register</h1>
-                    <p>Already registered ? <NavLink to="/signin"> Sign In</NavLink></p>
+                <div className="container__header">
+                    <h1 className='d-flex justify-content-center'>Register</h1>
+                    <p className="d-flex justify-content-center">Already registered ? <NavLink className="login__link" to="/signin">  Sign In</NavLink></p>
+                </div>
+                    
                     <form id='login_form' onSubmit={handleSubmit}>  
                             
                             <label><AccountCircleIcon /> {inputs[0].label}</label>

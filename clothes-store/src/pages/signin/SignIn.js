@@ -42,7 +42,7 @@ const SignIn = ()=>{
                     <Container className='container'>
                     <Row className='container__row'>
                        <Col xl={6} className='container__col' >
-                            <h1>Login</h1>
+                            <h1 className='d-flex justify-content-center'>Login</h1>
                             <form id='login_form' onSubmit={handleSubmit}>  
                                     
                                     <label><AccountCircleIcon /> {inputs[0].label}</label>
