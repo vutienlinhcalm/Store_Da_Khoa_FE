@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom'
+import axios from 'axios';
 import FormInput from '../../common/forminput/FormInput';
 import{Container,Row,Col} from 'react-bootstrap';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -27,7 +28,7 @@ const  SignUp = ()=>{
     name:'username',
     type:'text',
     placeholder:'Username',
-    label:'Username',
+    label:'name',
     errormessage:"Username should be 3-16 characters and shouldn't include any special characters!",
     pattern:"^[a-zA-Z0-9]{3,16}$",
     required:true
@@ -76,7 +77,27 @@ const  SignUp = ()=>{
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    console.log(Object.fromEntries(data.entries()))
+    axios.post(
+      'https://localhost:44304/api/Account/Login',{
+        username: Object.fromEntries(data.entries()).username,
+        phone: Object.fromEntries(data.entries()).phone,
+        email: Object.fromEntries(data.entries()).email,
+        password: Object.fromEntries(data.entries()).password
+      }
+    ).then((response)=>{
+      if (response.data === 'Log in successfully'){
+        console.log("successfully")
+      }
+      else {
+        console.log( 'Log in successfully');
+      }
+    })
+    // console.log({
+    //   username: Object.fromEntries(data.entries()).username,
+    //   phone: Object.fromEntries(data.entries()).phone,
+    //   email: Object.fromEntries(data.entries()).email,
+    //   password: Object.fromEntries(data.entries()).password
+    // })
   }
   const onChange = (e)=>{
     setValues({...values,[e.target.name]: e.target.value});
