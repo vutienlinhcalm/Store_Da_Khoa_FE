@@ -18,7 +18,6 @@
   .product_thumbnail {
     flex: 5;
     background-color: whitesmoke;
-    border-radius: 20px;
     position: relative;
   }
   

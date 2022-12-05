@@ -1,5 +1,5 @@
 .product_detail_thumbnail_primary {
-  border-radius: 20px;
+  
 }
 
 .product_detail_thumbnail_primary img {
@@ -19,13 +19,13 @@
   width: calc(50% - var(--thumb-space));
   margin-left: var(--thumb-space);
   margin-top: var(--thumb-space);
-  border-radius: 20px;
+  
 }
 
 .product_detail_thumbnail_secondary_1 img, .product_detail_thumbnail_secondary_2 img {
   width: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  
   height: 100%;
 }
 
