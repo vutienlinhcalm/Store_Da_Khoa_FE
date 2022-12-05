@@ -1,0 +1,8 @@
+.product_page_header {
+  display: flex;
+  align-items: center;
+}
+
+.product_page_header .product_page_header_button {
+  display: flex;
+}

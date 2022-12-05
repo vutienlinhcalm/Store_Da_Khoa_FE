@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import PrimaryThumb from '../../../assets/images/product_detail_primary.jpg'
-import SecondaryThumb1 from '../../../assets/images/product_detail_secondary_1.jpg'
-import SecondaryThumb2 from '../../../assets/images/product_detail_secondary_2.jpg'
+import PrimaryThumb from '../../../assets/product_detail_primary.jpg'
+import SecondaryThumb1 from '../../../assets/product_detail_secondary_1.jpg'
+import SecondaryThumb2 from '../../../assets/product_detail_secondary_2.jpg'
 import StarIcon from '@mui/icons-material/Star';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import './ProductDetail.css'
@@ -66,7 +66,7 @@ const ProductDetail = () => {
               <div className={`XL ${selectedSize === 'XL' ? 'active' : ''}`} onClick={(e) => handleClickSize(e)}>XL</div>
             </div>
           </div>
-          <div className="product_detail_info_amount">
+          {/* <div className="product_detail_info_amount">
             <div className="amount">
               <button className={`${selectedAmount === 1 ? 'disabled' : ''}`} onClick={() => setSelectedAmount(selectedAmount - 1)}>-</button>
               <span>{selectedAmount}</span>
@@ -76,9 +76,9 @@ const ProductDetail = () => {
               <ShoppingBagIcon />
               <span>Add to cart</span>
             </button>
-          </div>
+          </div> */}
           <div className="product_detail_info_description">
-            <h5>Description</h5>
+            <h5 style={{ marginTop: 10 }}>Description</h5>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas consequatur, recusandae architecto amet doloribus corporis, laudantium illo nesciunt reiciendis beatae rerum magnam animi maiores cupiditate facere reprehenderit nostrum possimus. Vel ratione, voluptas nesciunt dolorum porro nostrum exercitationem. Nobis soluta facilis alias sint doloremque nulla placeat laboriosam tempore unde iste. Nesciunt similique neque doloribus iusto ut nostrum quaerat voluptatibus quod, dolorum nihil magni. Consectetur, ut? Culpa, tempore esse veritatis iste explicabo voluptatum, officiis dolore praesentium ad nulla ipsum. Cum delectus, illum ratione nulla distinctio, aliquid inventore provident harum hic quibusdam tenetur velit commodi, aspernatur nihil quaerat autem? Voluptatibus commodi blanditiis saepe?</p>
           </div>
           <div className="product_detail_info_labels">
