@@ -13,20 +13,86 @@ import {
   Switch,
   Checkbox,
   Upload,
+  message,
 } from 'antd';
-import { borderRadius, width } from '@mui/system';
+import axios from 'axios'
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
-const FormUpdate = ({ setShowForm }) => {
+const FormUpdate = ({ setShowForm, productSelected, setProducts }) => {
 
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
+  const [name, setName] = useState(productSelected.productName)
+  const [description, setDescription] = useState(productSelected.description)
   const [disabled, setDisabled] = useState(false)
-  const [price, setPrice] = useState(0)
-  const [files, setFiles] = useState([])
+  const [price, setPrice] = useState(productSelected.price)
+  const [files, setFiles] = useState([
+    {
+      uid: '-1',
+      name: 'image.png',
+      status: 'done',
+      url: productSelected.mainImage,
+    },
+    {
+      uid: '-2',
+      name: 'image.png',
+      status: 'done',
+      url: productSelected.subImage1,
+    },
+    {
+      uid: '-3',
+      name: 'image.png',
+      status: 'done',
+      url: productSelected.subImage2,
+    },
+  ])
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log({ name, description, disabled, price, files })
+    const response = await axios.put(`http://localhost:5001/api/Product/UpdateProduct/${productSelected.productId}`, {
+      "brand": productSelected.brand,
+      "productId": productSelected.productId,
+      "productName": name,
+      "description": description,
+      "mainImage": files[0].url ? files[0].url : files[0].originFileObj.url,
+      "subImage1": files[1].url ? files[1].url : files[1].originFileObj.url,
+      "subImage2": files[2].url ? files[2].url : files[2].originFileObj.url,
+      "price": price,
+      "storeQuantity": productSelected.storeQuantity,
+      "gender": productSelected.gender,
+      "category": productSelected.category
+    })
+    const result = await response.data
+    message.success("Update successfully!")
+    setShowForm(false)
+    setProducts((prev) => {
+      return prev.map(product => {
+        if (product.productId === result.data.productId) {
+          return result.data
+        }
+        return product
+      })
+    })
+  }
+
+  const handleCustomerRequest = async (options) => {
+    try {
+      const imageData = new FormData()
+      imageData.append('api_key', '711435673899525')
+      imageData.append('file', options.file);
+      imageData.append('upload_preset', 'socialnetwork');
+      imageData.append('cloud_name', 'wjbucloud');
+      const url = (
+        await axios.post('https://api.cloudinary.com/v1_1/wjbucloud/image/upload', imageData, {
+          headers: {
+            'content-type': 'multipart/form-data',
+          },
+        })
+      ).data.url;
+      options.onSuccess("OK")
+      options.file.url = url
+    } catch (error) {
+      console.log(error)
+      options.onError(error)
+    }
   }
 
 
@@ -74,7 +140,7 @@ const FormUpdate = ({ setShowForm }) => {
           <Switch checked={disabled} onClick={() => setDisabled(!disabled)} />
         </Form.Item>
         <Form.Item label="Images" valuePropName="fileList">
-          <Upload listType="picture-card" onChange={(info) => setFiles(info.fileList)}>
+          <Upload listType="picture-card" onChange={(info) => setFiles(info.fileList)} fileList={files} customRequest={(options) => handleCustomerRequest(options)}>
             <div>
               <PlusOutlined />
               <div

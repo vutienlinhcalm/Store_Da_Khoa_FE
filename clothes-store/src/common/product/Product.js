@@ -1,13 +1,20 @@
 import React from 'react'
-import ProductThumnail from '../../assets/images/green_shirt.png'
+import { useNavigate } from 'react-router-dom'
 import StarIcon from '@mui/icons-material/Star';
 import './Product.css'
 
-const Product = () => {
+const Product = ({ info }) => {
+  const navigate = useNavigate()
   return (
-    <div className="single_product">
+    <div className="single_product" onClick={() => navigate(`${info?.productId}`)}>
       <div className="product_thumbnail">
-        <img src={ProductThumnail} alt="thumb" />
+        <img src={info?.mainImage} alt="thumb" style={
+          {
+            width: '100%',
+            height: '300px',
+            objectFit: 'cover'
+          }
+        } />
         <div className="product_size">
           <span>XS</span>
           <span>S</span>
@@ -17,11 +24,16 @@ const Product = () => {
         </div>
       </div>
       <div className="product_description">
-        <h4>Leather Gloves</h4>
-        <p>Perfect mint green</p>
+        <h4>{info?.productName}</h4>
+        <p style={{
+          display: "-webkit-box",
+          WebkitLineClamp: 4,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}>{info?.description}</p>
         <div className="product_description_others">
           <div className="product_description_others_price">
-            <span>$42.00</span>
+            <span>${info?.price}</span>
           </div>
           <div className="product_description_others_rating">
             <StarIcon htmlColor='yellow' />

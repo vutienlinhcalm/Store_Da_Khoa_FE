@@ -3,7 +3,7 @@ import { EyeOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Avatar, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
 const { Meta } = Card;
-const Product = () => {
+const Product = ({ info, handleShowForm }) => {
   const navigate = useNavigate()
   return (
     <Card
@@ -14,18 +14,25 @@ const Product = () => {
       cover={
         <img
           alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          src={info.mainImage}
+          style={
+            {
+              width: '100%',
+              height: '300px',
+              objectFit: 'cover'
+            }
+          }
         />
       }
       actions={[
-        <EyeOutlined key="eye" onClick={() => navigate("/product-detail/1")} />,
-        <EditOutlined key="edit" />,
+        <EyeOutlined key="eye" onClick={() => navigate(`/product-detail/${info.productId}`)} />,
+        <EditOutlined key="edit" onClick={() => handleShowForm(info)} />,
         <DeleteOutlined key="delete" />,
       ]}
     >
       <Meta
-        avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-        title="Card title"
+        // avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+        title={info.productName}
         description={
           <p
             style={{
@@ -35,7 +42,7 @@ const Product = () => {
               overflow: "hidden",
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, sint dolores, eligendi labore, obcaecati ipsam neque at animi similique natus laudantium cum ut tenetur repudiandae nobis. Optio nesciunt eius rem nemo perferendis doloribus ducimus saepe pariatur nisi, necessitatibus laborum soluta?
+            {info.description}
           </p>
         }
 

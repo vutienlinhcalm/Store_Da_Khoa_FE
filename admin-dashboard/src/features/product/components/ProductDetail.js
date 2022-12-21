@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import PrimaryThumb from '../../../assets/product_detail_primary.jpg'
 import SecondaryThumb1 from '../../../assets/product_detail_secondary_1.jpg'
 import SecondaryThumb2 from '../../../assets/product_detail_secondary_2.jpg'
 import StarIcon from '@mui/icons-material/Star';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import './ProductDetail.css'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const ProductDetail = () => {
 
+  const [product, setProduct] = useState([])
   const [selectedColor, setSelectedColor] = useState("blue")
   const [selectedSize, setSelectedSize] = useState("XS")
-  const [selectedAmount, setSelectedAmount] = useState(1)
 
   const handleClickColor = (e) => {
     setSelectedColor(e.target.className)
@@ -20,27 +20,39 @@ const ProductDetail = () => {
   const handleClickSize = (e) => {
     setSelectedSize(e.target.innerText);
   }
+  const params = useParams()
+
+  useEffect(() => {
+    const getSingleProduct = async () => {
+      const response = await axios.get(`http://localhost:5001/api/Product/GetProductById/${params.id}`)
+      const productInfo = response.data
+      setProduct(productInfo.data)
+      console.log(product)
+
+    }
+    getSingleProduct()
+  }, [])
 
   return (
     <Container fluid="md">
       <Row>
         <Col className="product_detail_thumbnail">
           <div className='product_detail_thumbnail_primary'>
-            <img src={PrimaryThumb} alt="primary_thumb" />
+            <img src={product.mainImage} alt="primary_thumb" />
           </div>
           <div className='product_detail_thumbnail_secondary'>
             <div className='product_detail_thumbnail_secondary_1'>
-              <img src={SecondaryThumb1} alt="secondary_thumb" />
+              <img src={product.subImage1} alt="secondary_thumb" />
             </div>
             <div className='product_detail_thumbnail_secondary_2'>
-              <img src={SecondaryThumb2} alt="secondary_thumb" />
+              <img src={product.subImage2} alt="secondary_thumb" />
             </div>
           </div>
         </Col>
         <Col className='product_detail_info'>
-          <h3>Product Name</h3>
+          <h3>{product.productName}</h3>
           <div className="product_detail_info_price_rating">
-            <button className='price_button'>$112.00</button>
+            <button className='price_button'>${product.price}</button>
             <div className="horizontal"></div>
             <StarIcon htmlColor='#FACC15' />
             <span className='stars-rating'>4.9</span>
@@ -66,20 +78,9 @@ const ProductDetail = () => {
               <div className={`XL ${selectedSize === 'XL' ? 'active' : ''}`} onClick={(e) => handleClickSize(e)}>XL</div>
             </div>
           </div>
-          {/* <div className="product_detail_info_amount">
-            <div className="amount">
-              <button className={`${selectedAmount === 1 ? 'disabled' : ''}`} onClick={() => setSelectedAmount(selectedAmount - 1)}>-</button>
-              <span>{selectedAmount}</span>
-              <button onClick={() => setSelectedAmount(selectedAmount + 1)}>+</button>
-            </div>
-            <button className="add_to_cart_button">
-              <ShoppingBagIcon />
-              <span>Add to cart</span>
-            </button>
-          </div> */}
           <div className="product_detail_info_description">
             <h5 style={{ marginTop: 10 }}>Description</h5>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas consequatur, recusandae architecto amet doloribus corporis, laudantium illo nesciunt reiciendis beatae rerum magnam animi maiores cupiditate facere reprehenderit nostrum possimus. Vel ratione, voluptas nesciunt dolorum porro nostrum exercitationem. Nobis soluta facilis alias sint doloremque nulla placeat laboriosam tempore unde iste. Nesciunt similique neque doloribus iusto ut nostrum quaerat voluptatibus quod, dolorum nihil magni. Consectetur, ut? Culpa, tempore esse veritatis iste explicabo voluptatum, officiis dolore praesentium ad nulla ipsum. Cum delectus, illum ratione nulla distinctio, aliquid inventore provident harum hic quibusdam tenetur velit commodi, aspernatur nihil quaerat autem? Voluptatibus commodi blanditiis saepe?</p>
+            <p>{product.description}</p>
           </div>
           <div className="product_detail_info_labels">
             <div className="label_item">

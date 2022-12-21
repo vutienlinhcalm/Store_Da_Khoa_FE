@@ -20,7 +20,6 @@ const { Header, Sider, Content } = Layout;
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [size, setSize] = useState('large')
-  const [showForm, setShowForm] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -72,9 +71,9 @@ const Dashboard = () => {
           })}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
             <h3 style={{ marginBottom: 0 }}>{location.pathname === "/products" ? "List Product" : location.pathname.includes("/product-detail") ? "Product Detail" : location.pathname.includes("/order-detail") ? "Order Detail" : location.pathname === "/orders" ? "List Order" : "Not Found"}</h3>
-            {(location.pathname.includes("/product-detail") || location.pathname.includes("/order-detail")) && <Button type="primary" icon={<EditOutlined />} size={size} style={{ display: 'flex', alignItems: 'center', marginRight: 10 }} onClick={() => setShowForm(true)}>
+            {/* {(location.pathname.includes("/product-detail") || location.pathname.includes("/order-detail")) && <Button type="primary" icon={<EditOutlined />} size={size} style={{ display: 'flex', alignItems: 'center', marginRight: 10 }} onClick={() => setShowForm(true)}>
               Update
-            </Button>}
+            </Button>} */}
           </div>
         </Header>
         <Content
@@ -98,20 +97,6 @@ const Dashboard = () => {
               <Route path="/*" element={<Navigate to="/products" replace />} />
             </Routes>
             <Outlet />
-            {showForm && (
-              <>
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  zIndex: 998,
-                  backgroundColor: 'rgba(0,0,0,0.8)'
-                }}></div>
-                <FormUpdate setShowForm={setShowForm} />
-              </>
-            )}
           </div>
         </Content>
       </Layout>
