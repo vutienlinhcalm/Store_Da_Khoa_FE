@@ -8,7 +8,9 @@ import AboutPage from "./pages/about/AboutPage";
 import SignUp from "./pages/signup/SignUp";
 import SignIn from "./pages/signin/SignIn";
 import CheckOut from "./pages/checkout/CheckOut";
+import { useState } from "react";
 function App() {
+  const [productsInCart, setProductsInCart] = useState([])
   return (
     <div className="App">
       <Header />
@@ -16,11 +18,11 @@ function App() {
       <Routes>
         <Route path="/*" element={<HomePage />}></Route>
         <Route path="/about" element={<AboutPage />}></Route>
-        <Route path="/cart" element={<CartPage />}></Route>
-        <Route path="/category/*" element={<CategoryIndex />}></Route>
-        <Route path="/signup" element={<SignUp/>}></Route>
-        <Route path="/signin" element={<SignIn/>}></Route>
-        <Route path="/checkout" element={<CheckOut/>}></Route>
+        <Route path="/cart" element={<CartPage productsInCart={productsInCart} setProductsInCart={setProductsInCart} />}></Route>
+        <Route path="/category/*" element={<CategoryIndex productsInCart={productsInCart} setProductsInCart={setProductsInCart} />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/signin" element={<SignIn />}></Route>
+        <Route path="/checkout" element={<CheckOut />}></Route>
       </Routes>
       <Outlet />
       <Footer />

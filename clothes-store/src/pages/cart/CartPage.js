@@ -2,16 +2,31 @@ import React from 'react'
 import Table from 'react-bootstrap/Table';
 import { NavLink } from 'react-router-dom';
 import ImageProduct1 from '../../assets/images/ao_khoac_bomber.jpg';
+import DeleteIcon from '@mui/icons-material/Delete';
 import './CartPage.css';
-const CartPage = () => {
+const CartPage = ({ productsInCart, setProductsInCart }) => {
+  const handleBuy = async () => {
+
+  }
+
+  const handleDelete = (id) => {
+    setProductsInCart((prev) => {
+      return prev.filter(item => {
+        if (item.productId === id) {
+          return false
+        }
+        return true
+      })
+    })
+  }
   return (
     <div>
       <div className='d-flex'>
         <div className='header_cart'>
-            <h2>Shopping Cart </h2>
+          <h2>Your Cart </h2>
         </div>
       </div>
-        <Table hover>
+      <Table hover>
         <thead>
           <tr>
             <th>Product</th>
@@ -19,39 +34,29 @@ const CartPage = () => {
             <th>Price</th>
             <th>Quantity</th>
             <th>Amount of money</th>
-            <th>manipulation</th>
+            <th>Action</th>
           </tr>
         </thead>
-          <tbody>
-            <tr>
-              <td>Áo thun</td>
-              <td><img src={ImageProduct1} alt='hinh anh' width={100} height={100}></img></td>
-              <td>100000</td>
-              <td>2</td>
-              <td>200000</td>
-              <td><button type="button" class="btn btn-light">Delete</button></td>
+        <tbody>
+          {productsInCart.map((item, index) => {
+            return <tr key={index}>
+              <td>{item.productName}</td>
+              <td><img src={item.mainImage} alt='hinh anh' width={100} height={100}></img></td>
+              <td>{item.price}</td>
+              <td>{item.quantity}</td>
+              <td>{item.total}</td>
+              <td><DeleteIcon style={{ cursor: "pointer" }} onClick={() => handleDelete(item.productId)} /></td>
             </tr>
-            <tr>
-              <td>Áo thun</td>
-              <td><img src={ImageProduct1} alt='hinh anh' width={100} height={100}></img></td>
-              <td>100000</td>
-              <td>2</td>
-              <td>200000</td>
-              <td><button type="button" class="btn btn-light">Delete</button></td>
-            </tr>
-          
-          </tbody>
-        </Table>
-        <button type="button" class="btn btn-light">
-        <NavLink className='link_button' to='/checkout'>
-            Buy Now
-        </NavLink>
-                      
-        </button>
-  
-  
+          })}
+        </tbody>
+      </Table>
+      <button type="button" class="btn btn-light" onClick={handleBuy}>
+        Buy Now
+      </button>
+
+
     </div>
-    
+
   )
 }
 

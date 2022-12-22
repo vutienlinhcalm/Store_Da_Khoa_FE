@@ -1,36 +1,23 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
-import BannerBackground from '../../../assets/images/banner-background-0.svg'
+import BannerBackground1 from '../../../assets/images/banner-background-1.jpg'
+import BannerBackground2 from '../../../assets/images/banner-background-2.jpg'
+import BannerBackground3 from '../../../assets/images/banner-background-3.jpg'
 
 const Banner = () => {
   return (
     <Carousel variant="dark" fade="True">
-        
-        <Carousel.Item>
-          <img className="d-block w-100" src={BannerBackground} alt="First slide" style={{background:"#E3FFE6"}} />
-          <Carousel.Caption>
-            <h5>First slide label</h5>
-            <p>
-              Decription
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={BannerBackground} alt="Second slide" style={{background:"#E3FFE6"}} />
-          <Carousel.Caption>
-            <h5>Second slide label</h5>
-            <p>
-              Decription
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={BannerBackground} alt="Third slide" style={{background:"#E3FFE6"}} />
-          <Carousel.Caption className="caption_new">
-            
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
+
+      <Carousel.Item style={{ width: "100%", height: "100%", objectFit: "cover" }} >
+        <img src={BannerBackground1} alt="First slide" style={{ background: "#E3FFE6", objectFit: "cover", width: "100%", height: "100%" }} />
+      </Carousel.Item>
+      <Carousel.Item style={{ width: "100%", height: "100%", objectFit: "cover" }}>
+        <img src={BannerBackground2} alt="Second slide" style={{ background: "#E3FFE6", objectFit: "cover", width: "100%", height: "100%" }} />
+      </Carousel.Item>
+      <Carousel.Item style={{ width: "100%", height: "100%", objectFit: "cover" }}>
+        <img src={BannerBackground3} alt="Third slide" style={{ background: "#E3FFE6", objectFit: "cover", width: "100%", height: "100%" }} />
+      </Carousel.Item>
+    </Carousel>
   )
 }
 

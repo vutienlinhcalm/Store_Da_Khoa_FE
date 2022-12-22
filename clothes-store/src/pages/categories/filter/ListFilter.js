@@ -6,10 +6,16 @@ const ListFilter = ({ setProducts }) => {
 
   const handleClick = async (category) => {
     try {
-      const response = await axios.get(`http://localhost:5001/api/Product/GetListProductByCategory?category=${category}`)
-      const result = await response.data
-      const data = result.data
-      setProducts(data)
+      if (category === "all") {
+        const response = await axios.get("http://localhost:5001/api/Product/GetListProduct")
+        const products = await response.data
+        setProducts(products.data)
+      } else {
+        const response = await axios.get(`http://localhost:5001/api/Product/GetListProductByCategory?category=${category}`)
+        const result = await response.data
+        const data = result.data
+        setProducts(data)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -17,6 +23,9 @@ const ListFilter = ({ setProducts }) => {
 
   return (
     <div className='filter_list'>
+      <div className='filter_item' onClick={() => handleClick("all")}>
+        <span>All</span>
+      </div>
       <div className='filter_item' onClick={() => handleClick("tops")}>
         <span>Tops</span>
       </div>

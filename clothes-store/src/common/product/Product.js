@@ -24,10 +24,15 @@ const Product = ({ info }) => {
         </div>
       </div>
       <div className="product_description">
-        <h4>{info?.productName}</h4>
+        <h4 style={{
+          display: "-webkit-box",
+          WebkitLineClamp: 1,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}>{info?.productName}</h4>
         <p style={{
           display: "-webkit-box",
-          WebkitLineClamp: 4,
+          WebkitLineClamp: 3,
           WebkitBoxOrient: "vertical",
           overflow: "hidden",
         }}>{info?.description}</p>

@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import PrimaryThumb from '../../../assets/images/product_detail_primary.jpg'
-import SecondaryThumb1 from '../../../assets/images/product_detail_secondary_1.jpg'
-import SecondaryThumb2 from '../../../assets/images/product_detail_secondary_2.jpg'
 import StarIcon from '@mui/icons-material/Star';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import './ProductDetail.css'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const ProductDetail = () => {
+const ProductDetail = ({ productsInCart, setProductsInCart }) => {
 
   const [selectedColor, setSelectedColor] = useState("blue")
   const [selectedSize, setSelectedSize] = useState("XS")
@@ -24,12 +21,26 @@ const ProductDetail = () => {
     setSelectedSize(e.target.innerText);
   }
 
+  const handleAddToCart = () => {
+    const item = {
+      "productName": product.productName,
+      "mainImage": product.mainImage,
+      "quantity": selectedAmount,
+      "price": product.price,
+      "total": selectedAmount * product.price,
+      "productId": product.productId
+    }
+    setProductsInCart((prev) => {
+      return [...prev, item]
+    })
+  }
+
   const params = useParams()
 
   useEffect(() => {
     const getSingleProduct = async () => {
       const response = await axios.get(`http://localhost:5001/api/Product/GetProductById/${params.id}`)
-      const productInfo = response.data
+      const productInfo = await response.data
       setProduct(productInfo.data)
       console.log(product)
 
@@ -88,7 +99,7 @@ const ProductDetail = () => {
               <span>{selectedAmount}</span>
               <button onClick={() => setSelectedAmount(selectedAmount + 1)}>+</button>
             </div>
-            <button className="add_to_cart_button">
+            <button className="add_to_cart_button" onClick={handleAddToCart}>
               <ShoppingBagIcon />
               <span>Add to cart</span>
             </button>
