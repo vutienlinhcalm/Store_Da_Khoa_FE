@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Filter.css'
 import axios from 'axios'
 
 const ListFilter = ({ setProducts }) => {
+  const [selectedFilter, setSelectedFilter] = useState("")
 
   const handleClick = async (category) => {
     try {
@@ -16,6 +17,7 @@ const ListFilter = ({ setProducts }) => {
         const data = result.data
         setProducts(data)
       }
+      setSelectedFilter(category)
     } catch (error) {
       console.log(error)
     }
@@ -23,22 +25,22 @@ const ListFilter = ({ setProducts }) => {
 
   return (
     <div className='filter_list'>
-      <div className='filter_item' onClick={() => handleClick("all")}>
+      <div className={`filter_item ${selectedFilter === "all" && "active"}`} onClick={() => handleClick("all")}>
         <span>All</span>
       </div>
-      <div className='filter_item' onClick={() => handleClick("tops")}>
+      <div className={`filter_item ${selectedFilter === "tops" && "active"}`} onClick={() => handleClick("tops")}>
         <span>Tops</span>
       </div>
-      <div className='filter_item' onClick={() => handleClick("pants")}>
+      <div className={`filter_item ${selectedFilter === "pants" && "active"}`} onClick={() => handleClick("pants")}>
         <span>Pants</span>
       </div>
-      <div className='filter_item' onClick={() => handleClick("skirts")}>
+      <div className={`filter_item ${selectedFilter === "skirts" && "active"}`} onClick={() => handleClick("skirts")}>
         <span>Skirts</span>
       </div>
-      <div className='filter_item' onClick={() => handleClick("t-shirt")}>
+      <div className={`filter_item ${selectedFilter === "t-shirt" && "active"}`} onClick={() => handleClick("t-shirt")}>
         <span>T-shirt</span>
       </div>
-      <div className='filter_item' onClick={() => handleClick("shoes")}>
+      <div className={`filter_item ${selectedFilter === "shoes" && "active"}`} onClick={() => handleClick("shoes")}>
         <span>Shoes</span>
       </div>
     </div>

@@ -36,7 +36,7 @@ const CartPage = ({ productsInCart, setProductsInCart }) => {
 
       const response = await axios.post("http://localhost:5001/api/Order/CreateOrder", {
         "orderId": uuidv4(),
-        "accountId": "01",
+        "accountId": localStorage.getItem("user-id"),
         "paymentMethod": "COD",
         "address": address,
         "totalPrice": totalCost,
@@ -48,6 +48,8 @@ const CartPage = ({ productsInCart, setProductsInCart }) => {
       console.log(result)
       setIsLoading(false)
       message.success("Create order successfully")
+      setProductsInCart([])
+      setAddress("")
     } catch (error) {
       message.error(error)
     }

@@ -1,16 +1,21 @@
-.filter_list{
+.filter_list {
   display: flex;
   margin: 5rem 0;
   align-items: center;
 }
 
 
-.filter_item{
+.filter_item {
   margin: 0 20px;
   border: 1px solid #82B440;
   padding: 10px 20px;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.filter_item.active {
+  background-color: #82B440;
+  color: white
 }
 
 .filter_item:hover {

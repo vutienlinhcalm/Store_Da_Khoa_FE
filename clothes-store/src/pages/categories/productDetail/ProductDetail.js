@@ -23,18 +23,22 @@ const ProductDetail = ({ productsInCart, setProductsInCart }) => {
   }
 
   const handleAddToCart = () => {
-    const item = {
-      "productName": product.productName,
-      "mainImage": product.mainImage,
-      "quantity": selectedAmount,
-      "price": product.price,
-      "total": selectedAmount * product.price,
-      "productId": product.productId
+    if (localStorage.getItem("user-id")) {
+      const item = {
+        "productName": product.productName,
+        "mainImage": product.mainImage,
+        "quantity": selectedAmount,
+        "price": product.price,
+        "total": selectedAmount * product.price,
+        "productId": product.productId
+      }
+      message.success("Add to cart successfully")
+      setProductsInCart((prev) => {
+        return [...prev, item]
+      })
+    } else {
+      message.error("Please login before shopping")
     }
-    message.success("Add to cart successfully")
-    setProductsInCart((prev) => {
-      return [...prev, item]
-    })
   }
 
   const params = useParams()

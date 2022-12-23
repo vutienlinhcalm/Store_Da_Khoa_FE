@@ -11,9 +11,11 @@ import CheckOut from "./pages/checkout/CheckOut";
 import { useState } from "react";
 function App() {
   const [productsInCart, setProductsInCart] = useState([])
+  const [accountId, setAccountId] = useState(!localStorage.getItem("user-id") ? "" : localStorage.getItem("user-id"))
+  const [username, setUsername] = useState(!localStorage.getItem("username") ? "" : localStorage.getItem("username"))
   return (
     <div className="App">
-      <Header />
+      <Header accountId={accountId} username={username} setAccountId={setAccountId} setUsername={setUsername} />
       <hr />
       <Routes>
         <Route path="/*" element={<HomePage />}></Route>
@@ -21,7 +23,7 @@ function App() {
         <Route path="/cart" element={<CartPage productsInCart={productsInCart} setProductsInCart={setProductsInCart} />}></Route>
         <Route path="/category/*" element={<CategoryIndex productsInCart={productsInCart} setProductsInCart={setProductsInCart} />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/signin" element={<SignIn />}></Route>
+        <Route path="/signin" element={<SignIn setAccountId={setAccountId} setUsername={setUsername} />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
       </Routes>
       <Outlet />

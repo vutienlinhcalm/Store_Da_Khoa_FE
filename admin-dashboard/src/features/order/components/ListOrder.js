@@ -8,9 +8,9 @@ const ListOrder = () => {
 
   const columns = [
     {
-      title: 'Name Customer',
-      dataIndex: 'customerName',
-      key: 'customerName',
+      title: 'Username',
+      dataIndex: 'username',
+      key: 'username',
       render: (text) => <a>{text}</a>,
     },
     {
@@ -52,7 +52,7 @@ const ListOrder = () => {
           return {
             key: uuidv4(),
             address: order.address,
-            customerName: order.account.name,
+            username: order.account.userName,
             productName: detail.product.productName,
             quantity: detail.quantity,
             total: detail.price,
