@@ -1,18 +1,22 @@
-import React from 'react';
-import { Space, Table, Tag } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Button, Space, Table } from 'antd';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid'
 
 const ListOrder = () => {
+
+
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'Name Customer',
+      dataIndex: 'customerName',
+      key: 'customerName',
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
+      title: 'Name Product',
+      dataIndex: 'productName',
+      key: 'productName',
     },
     {
       title: 'Address',
@@ -20,62 +24,50 @@ const ListOrder = () => {
       key: 'address',
     },
     {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
+      title: 'Quantity',
+      dataIndex: 'quantity',
+      key: 'quantity',
     },
     {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
-        <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
-        </Space>
-      ),
+      title: 'Total',
+      key: 'total',
+      dataIndex: 'total',
+    },
+    {
+      title: 'Method',
+      key: 'method',
+      dataIndex: 'method'
     },
   ];
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
 
-  ];
+  const [orders, setOrders] = useState([])
+
+  useEffect(() => {
+    const getAllOrders = async () => {
+      const response = await axios.get("http://localhost:5001/api/Order/GetListOrder")
+      const result = await response.data
+      const mydata = result.data
+      const listOrderToView = mydata.map((order, index) => {
+        return order.orderDetails.map((detail, index) => {
+          return {
+            key: uuidv4(),
+            address: order.address,
+            customerName: order.account.name,
+            productName: detail.product.productName,
+            quantity: detail.quantity,
+            total: detail.price,
+            method: order.paymentMethod
+          }
+        })
+
+      })
+      setOrders(listOrderToView.flat())
+    }
+    getAllOrders()
+  }, [])
+
   return (
-    <Table columns={columns} dataSource={data} />
+    <Table columns={columns} dataSource={orders} />
   )
 }
 export default ListOrder;

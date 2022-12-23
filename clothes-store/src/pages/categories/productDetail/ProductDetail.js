@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import StarIcon from '@mui/icons-material/Star';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import './ProductDetail.css'
+import { message } from 'antd'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
@@ -30,6 +31,7 @@ const ProductDetail = ({ productsInCart, setProductsInCart }) => {
       "total": selectedAmount * product.price,
       "productId": product.productId
     }
+    message.success("Add to cart successfully")
     setProductsInCart((prev) => {
       return [...prev, item]
     })
@@ -42,7 +44,6 @@ const ProductDetail = ({ productsInCart, setProductsInCart }) => {
       const response = await axios.get(`http://localhost:5001/api/Product/GetProductById/${params.id}`)
       const productInfo = await response.data
       setProduct(productInfo.data)
-      console.log(product)
 
     }
     getSingleProduct()

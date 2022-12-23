@@ -1,11 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table from 'react-bootstrap/Table';
-import { NavLink } from 'react-router-dom';
-import ImageProduct1 from '../../assets/images/ao_khoac_bomber.jpg';
+import { Button } from 'react-bootstrap'
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Input, message } from 'antd'
+import { v4 as uuidv4 } from 'uuid'
 import './CartPage.css';
+import axios from 'axios';
 const CartPage = ({ productsInCart, setProductsInCart }) => {
-  const handleBuy = async () => {
+  const { TextArea } = Input
+  const [isLoading, setIsLoading] = useState(false)
+  const [address, setAddress] = useState("")
+  const handleBuy = async (productsInCart) => {
+    try {
+      setIsLoading(true)
+      const orderProducts = productsInCart.map((item) => {
+        return {
+          "productId": item.productId,
+          "quantity": item.quantity,
+          "price": item.price,
+        }
+      })
+
+      const totalCost = productsInCart.reduce((accumulator, item) => {
+        return accumulator + item.total
+      }, 0)
+
+      console.log({
+        "orderId": uuidv4(),
+        "accountId": "01",
+        "paymentMethod": "COD",
+        "address": address,
+        "totalPrice": totalCost,
+        "orderProducts": orderProducts
+      })
+
+      const response = await axios.post("http://localhost:5001/api/Order/CreateOrder", {
+        "orderId": uuidv4(),
+        "accountId": "01",
+        "paymentMethod": "COD",
+        "address": address,
+        "totalPrice": totalCost,
+        "orderProducts": orderProducts
+      })
+
+      const data = await response.data
+      const result = data.data
+      console.log(result)
+      setIsLoading(false)
+      message.success("Create order successfully")
+    } catch (error) {
+      message.error(error)
+    }
+
 
   }
 
@@ -50,9 +96,10 @@ const CartPage = ({ productsInCart, setProductsInCart }) => {
           })}
         </tbody>
       </Table>
-      <button type="button" class="btn btn-light" onClick={handleBuy}>
+      <TextArea rows={3} placeholder="Enter your address here" style={{ marginBottom: 10, width: "50%", display: "block" }} value={address} onChange={(e) => setAddress(e.target.value)} />
+      <Button variant='primary' onClick={() => handleBuy(productsInCart)} disabled={isLoading || productsInCart.length === 0}>
         Buy Now
-      </button>
+      </Button>
 
 
     </div>

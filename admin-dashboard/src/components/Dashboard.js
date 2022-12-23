@@ -33,7 +33,7 @@ const Dashboard = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={location.pathname.includes("/product") ? ['1'] : ['2']}
           items={[
             {
               key: '1',

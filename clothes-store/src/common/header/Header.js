@@ -40,7 +40,7 @@ const Header = () => {
             </Col>
             <Col style={{ display: "grid", placeItems: "center" }}>
               <NavLink to="/signin" className="header_category_link">
-                Log in
+                Sign in
               </NavLink>
             </Col>
           </Row>
